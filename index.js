@@ -12,7 +12,7 @@ const app = express();// an instance of the Express.js app is created, and the b
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-const mongoClient = new MongoClient('mongodb+srv://cosmos:cosmosTM@clustercosmos.pnuryvf.mongodb.net/?retryWrites=true&w=majority', {
+const mongoClient = new MongoClient('', {
   useNewUrlParser: true,//A new MongoClient instance is created, connecting to a MongoDB cluster using the specified connection string.
   useUnifiedTopology: true,
 });
@@ -22,7 +22,7 @@ const username = encodeURIComponent('cosmos');//Here, the SendinBlue API client 
 const password = encodeURIComponent('cosmosTM');
 const sendinBlueClient = new SibApiV3Sdk.TransactionalEmailsApi();
 const apiKey = sendinBlueClient.apiClient.authentications['api-key'];
-apiKey.apiKey = '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';
+apiKey.apiKey = '';
 
 // Define a route to trigger sending an email
 app.post('/send-email', async (req, res) => {//This defines a route (/send-email) that handles HTTP POST requests. The route is asynchronous, using the async keyword.
@@ -45,7 +45,7 @@ app.post('/send-email', async (req, res) => {//This defines a route (/send-email
     const sendSmtpEmail = new SendSmtpEmail();//An instance of SendSmtpEmail is created and configured with the subject, text content, sender information, and recipient email.
     sendSmtpEmail.subject = subject;
     sendSmtpEmail.textContent = body;
-    sendSmtpEmail.sender = { name: 'Cosmos', email: 'weerakkody1998@gmail.com' };
+    sendSmtpEmail.sender = { name: '', email: '' };
     sendSmtpEmail.to = [{ email: recipientEmail }];
 
     console.log(apiKey.apiKey);//This line logs the value of the SendinBlue API key to the console. It can be useful for debugging purposes or verifying that the API key is correctly set
